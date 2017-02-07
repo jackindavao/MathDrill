@@ -1,0 +1,481 @@
+HTML SOURCE
+
+<!doctype html>
+<html>
+<head>
+	<title>MathDog</title>
+	<!-- stylesheets -->
+	<link rel="stylesheet" href="http://www.jackemery.com/x/docs/mathdog.css" type="text/css"/>
+	
+	<!-- third-party javascript -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	
+	<!-- our javascript -->
+	<script src="http://www.jackemery.com/x/docs/mathdog.js" ></script>
+	
+
+</head>
+<body>
+<div id="md">
+	<div class="block-container" id="settings-block-0">
+		<div class="block-container" id="settings-block-1">
+			<div class="settings-title">Operation</div>
+			<div id="op">
+				<input type="checkbox" value="0" id="sb-add"><label for="sb-add">Add</label><br>
+				<input type="checkbox" value="1" id="sb-subtract"><label for="sb-subtract">Subtract</label><br>
+				<input type="checkbox" value="2" id="sb-multiply" checked><label for="sb-multiply">Multiply</label><br>
+				<input type="checkbox" value="3" id="sb-divide"><label for="sb-divide">Divide</label><br>
+				</div>
+			</div>
+		<div class="block-container" id="settings-block-2">
+			<div class="settings-title">Level</div>
+			<div id="x-val">
+				<input type="checkbox" value="1" id="lb-1"><label for="lb-1">1</label><br>
+				<input type="checkbox" value="2" id="lb-2"><label for="lb-2">2</label><br>
+				<input type="checkbox" value="3" id="lb-3"><label for="lb-3">3</label><br>
+				<input type="checkbox" value="4" id="lb-4"><label for="lb-4">4</label><br>
+				<input type="checkbox" value="5" id="lb-5"><label for="lb-5">5</label><br>
+				<input type="checkbox" value="6" id="lb-6"><label for="lb-6">6</label><br>
+				<input type="checkbox" value="7" id="lb-7"><label for="lb-7">7</label><br>
+				<input type="checkbox" value="8" id="lb-8"><label for="lb-8">8</label><br>
+				<input type="checkbox" value="9" id="lb-9"><label for="lb-9">9</label><br>
+				<input type="checkbox" value="10" id="lb-10"><label for="lb-10">10</label><br>
+				<input type="checkbox" value="11" id="lb-11"><label for="lb-11">11</label><br>
+				<input type="checkbox" value="12" id="lb-12" checked><label for="lb-12">12</label><br>
+				<input type="checkbox" value="13" id="lb-13"><label for="lb-13">13</label><br>
+				<input type="checkbox" value="14" id="lb-14"><label for="lb-14">14</label><br>
+				<input type="checkbox" value="15" id="lb-15"><label for="lb-15">15</label><br>
+				<input type="checkbox" value="16" id="lb-16"><label for="lb-16">16</label><br>
+			</div>
+			<span style="padding-left:5px"><input type="button" class="level-button" id="b-all" value="All">
+			<input type="button" class="level-button" id="b-clear" value="Clear"></span><br>
+			<span style="padding-left:5px">Limit Y to </span>
+			<select id="y-level-dropdown">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12" selected>12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+			</select>
+		</div>
+	</div>
+	<div class="block-container" id="game-block">
+		<div class="block-container" id="score-block">
+			<span class="lg-text">Score:&nbsp;</span>
+			<input type="text" class="lg-text-input" id="score-box"  maxlength=4 readonly=true>
+			<span class="med-text" id="miss-score">0 / 0</span>
+		</div>
+		<div class="block-container" id="timer-block">
+			<div class="block-container" id="timer-bar-outer">
+				<div class="block-container" id="timer-bar-inner"></div>
+			</div>
+		</div>
+		<div class="block-container" id="answer-label">Answer Here</div>
+		<div class="block-container" id="problem-block">
+			<input type="text" class="lg-text-input" id="problem-box" readonly=true>
+			<input type="text" class="lg-text-input" id="answer-box">
+		</div>
+		<div class="block-container lg-text" id="message-label-1"></div>
+		<div class="block-container med-text" id="message-label-2"></div>
+		<div class="block-container" id="start-block">
+			<input type="button" id="b-start" value="Start">
+			<span class="med-text" id="name-label">Name: </span>
+			<input type="text" class="med-text-input" id="name-box">
+		</div>
+	</div>
+</div>
+</body>
+</html>
+
+CSS SOURCE
+
+body, #md {
+	position : absolute;
+	font-family : 'Comic Sans MS', Verdana, Helvetica, Arial, sans-serif;
+	font-size : 16px;
+	color : #000000;
+}
+ #md {
+	width : 700px;
+	height : 630px;
+	background : lightgreen;
+	z-index : -2;
+ }
+
+.lg-text {
+	font-family : 'Comic Sans MS', Verdana, Helvetica, Arial, sans-serif;
+	font-size : 50px;
+	font-weight: normal;
+	color : #000000;
+}
+.med-text {
+	font-family : 'Comic Sans MS', Verdana, Helvetica, Arial, sans-serif;
+	font-size : 25px;
+	font-weight: normal;
+	color : #000000;
+}
+.lg-text-input {
+	height : 60px;
+	font-size : 50px;
+}
+.med-text-input {
+	height : 30px;
+	font-size : 25px;
+}
+.block-container {
+	position : absolute;
+}
+#settings-block-0 {
+	background : green;
+	top : 20px;
+	left : 10px;
+	width : 150px;
+	height : 585px;
+	z-index : -1;
+}
+#settings-block-1 {
+	background : yellow;
+	top : 2px;
+	left : 2px;
+	width : 146px;
+	height : 125px;
+}
+#settings-block-2{
+	background : orange;
+	top : 132px;
+	left : 2px;
+	width : 146px;
+	height : 450px;
+}
+.settings-title {
+	font-family : 'Comic Sans MS', Verdana, Helvetica, Arial, sans-serif;
+	font-size : 20px;
+	font-weight: bold;
+	color : #000000;
+}
+#game-block {
+	background : lightgreen;
+	top : 20px;
+	left : 180px;
+	width : 500px;
+	height : 585px;
+	z-index : -1;
+}
+#score-block {
+	background: lightgreen;
+	width : 500px;
+	height : 80px;
+}
+#score-box {
+	width : 120px;
+	font-size : 50px;
+	text-align : right;
+}
+#miss-score {
+	background : lightgreen;
+	padding-left : 30px;
+	vertical-align : 15%;
+}
+#timer-block {
+	background : lightgreen;
+	top : 120px;
+	width : 500px;
+	height : 38px;
+}
+#timer-bar-outer {
+	background : yellow;
+	top : 0px;
+	left : 40px;
+	width : 420px;
+	height : 30px;
+	border : 3px solid black;
+}
+#timer-bar-inner{
+	background : red;
+	top : 0px;
+	left : 0px;
+	width : 420px;
+	height : 30px;
+	z-index : +2;
+}
+#answer-label {
+	top : 170px;
+	left : 330px;
+	font-family : 'Comic Sans MS', Verdana, Helvetica, Arial, sans-serif;
+	font-size : 18px;
+	font-weight: normal;
+	color : #000000;
+}
+#problem-block {
+	background : lightgreen;
+	top : 200px;
+	left : 40px;
+	width : 420px;
+	height : 75px;
+}
+#problem-box {
+	width : 270px;
+	text-align : right;
+}
+#answer-box {
+	width : 130px;
+	text-align : right;
+}
+#message-label-1 {
+	top : 270px;
+	left : 50px;
+}
+#message-label-2 {
+	top : 330px;
+	left : 40px;
+}
+
+
+#start-block {
+	background : lightgreen;
+	top : 500px;
+	width : 500px;
+}
+#b-start {
+	display : inline;
+	width : 100px;
+	height : 40px;
+	font-size : 25px;
+}
+#name-box {
+	display : inline;
+	width : 200px;
+	padding-left : 10px;
+}
+#name-label {
+	padding-left : 80px;
+}
+
+JAVASCRIPT SOURCE
+
+
+$(document).ready(function() {
+	var timer_bar = $("#timer-bar-inner");
+	var player_name;
+	var prob;
+	var prob_gen_fn;
+	var score_update_fn;
+	$('#message-label-2').text('Enter name, press start');
+	$("#b-start").click(function() {
+		player_name = $("#name-box").val().trim();
+		if (player_name.length == 0){
+			alert("please enter name first");
+			return;
+		}
+		$('#message-label-1').text('');
+		$('#message-label-2').text('');
+		function timer_tick () {
+			timer_bar.width(timer_bar.width() - 7);
+			if ( timer_bar.width() <= 0 ) {
+				clearInterval(timer_handle);
+				$('#message-label-1').text('Game Over');
+				$('#message-label-2').text('Enter name, press start');
+				$('#answer-box').val('');
+				$('#answer-box').prop('readonly', true);
+			}
+		}
+
+		timer_bar.width(420);
+		var timer_handle = setInterval(timer_tick, 1000);
+		$('#answer-box').prop('readonly', false);
+		set_score(0, 0, 0);
+		prob_gen_fn = problem_gen_fn_getter();
+		prob = prob_gen_fn();
+		score_update_fn = score_update_fn_getter();
+	});
+	
+	$("#answer-box").keydown(function(e) {
+		if (e.keyCode == 13) {
+			e.preventDefault();
+			var ans = $('#answer-box').val();
+			
+			if (+ans == +prob.ans) {
+				score_update_fn(prob.p_score, true);	
+				prob = prob_gen_fn();
+			} else {
+				score_update_fn(prob.p_score, false);
+			}
+			$('#answer-box').val('');
+		} else if (e.keyCode == 107) {  //num pad + key, use for backspace
+			var astr = '' + $('#answer-box').val();
+			if (astr.length > 0) {
+				$('#answer-box').val(astr.slice(0,-1))		
+			}
+			return false;
+		}
+	});
+
+	var flash_fn_getter = function() {
+		var flashcolors = ['blue', 'purple', 'red', 'orange', 'yellow'];
+		var bonuscount = -1;
+		var flashcount = 5;
+		var flashhandle;
+		var flashonQ = false;
+		var backcolor = $(md).css('background-color');
+		
+		return function ( points ) {
+			$('#message-label-1').text('BONUS!: ' + points + ' POINTS!');
+			bonuscount += 1;
+			if (bonuscount > 4) {bonuscount = 0;}
+			flashhandle = setInterval(
+				function(){
+					flashonQ = !flashonQ;
+					if (flashonQ) {
+						$(md).css('background-color', flashcolors[bonuscount]);
+						flashcount -= 1;
+						if (flashcount <= 0) {
+							clearInterval(flashhandle);
+							$('#message-label-1').text('');
+							flashcount = 5;
+							flashonQ = false;
+							$(md).css('background-color', backcolor);	
+						}
+					} else {
+						$(md).css('background-color', backcolor);
+					}
+				}
+			, 200);
+		}
+	}
+
+	function set_score(score, nright, nttl) {
+		$("#score-box").val(score);
+		var miss_score = "" + nright + " / " + nttl;
+		$("#miss-score").text(miss_score);
+	}
+
+	var score_update_fn_getter = function() {
+		var score = 0;
+		var nright = 0;
+		var nttl = 0;
+		var nsincemiss = 0;
+		var last_wrongQ = false;
+		var flash_fn = flash_fn_getter();
+		return function(points, correctQ) {
+			if (correctQ ) {
+				if(!last_wrongQ) {
+					score += points;
+					nright += 1;
+					nsincemiss += 1;
+					if( Math.floor(6 + 7 * Math.random()) <= nsincemiss) { //check for bonus
+						var bonus = Math.round(points * Math.floor(2 + 6 * Math.random()));
+						score += bonus;
+						nsincemiss = 0;
+						flash_fn(bonus);
+					} else {
+						$('#message-label-1').text('');
+						$('#message-label-2').text('');
+					}
+				}
+				last_wrongQ = false;
+			} else {
+				last_wrongQ = true;
+				$('#message-label-1').text('' + prob.p_str + ' ' + prob.ans);
+				$('#message-label-2').text('Enter correct answer to continue');
+				nsincemiss = 0;
+			}
+			nttl += 1;
+			set_score(score, nright, nttl);
+		}
+	}
+	
+	
+	
+	var problem_gen_fn_getter = function(  ) {
+		var last_xval = 0;
+		var last_yval = 0;
+		var last_op = 0;
+		return function () {
+			var settings = get_settings();
+			var xval;
+			var yval;
+			var op;
+			do {
+				xval = +settings.xvals[Math.floor(Math.random() * settings.xvals.length)];
+				yval = +Math.floor(Math.random() * settings.y_limit + 1);
+				op = +settings.ops[Math.floor(Math.random() * settings.ops.length)];
+			} while (xval == last_xval && yval == last_yval && last_op == op);
+			var temp;
+			if (Math.random() >= 0.5 ){
+				temp = xval;
+				xval = yval;
+				yval = temp;
+			}
+			last_xval = xval;
+			last_yval = yval;
+			last_op = op;
+			var ans = 0;
+			var p_score = 0;
+			var p_str = "";
+			switch (op) {
+				case 0:  //+
+					p_str = "" + xval + " + " + yval + " = ";
+					ans = +xval + yval;
+					break;
+				case 1: //-
+					temp = +xval + yval;
+					p_str = "" + temp + " - " + yval + " = ";
+					ans = +xval;
+					break;
+				case 2: //*
+					p_str = "" + xval + " X " + yval + " = ";
+					ans = +xval * yval;
+					break;
+				case 3: // divide
+					temp = +xval * yval;
+					p_str = "" + temp + " / " + yval + " = ";
+					ans = +xval;
+			}
+			var p_score = Math.round(((3 + (4 * xval / 16) + settings.ops.length) * (1.0 + op / 8.0)));
+			$('#problem-box').val(p_str);
+			$('#answer-box').val('');
+			$('#answer-box').focus();
+			return {p_str: p_str, ans: ans, p_score: p_score};
+		}
+	}
+	
+	
+	function get_settings() {
+		var xvals = []
+		var ops = []
+		var y_limit = $("#y-level-dropdown :selected").val();
+		$("#x-val input:checked").each(function() {
+				xvals.push($(this).prop('value'));
+		});
+		$("#op input:checked").each(function() {
+			ops.push($(this).prop('value'));
+		});
+		return {ops: ops, xvals: xvals, y_limit: y_limit};
+	}
+	function reset_settings( checkQ ){  //checkQ: true to check, false to uncheck
+		var xvals = get_settings().xvals;
+		var max_x = +xvals[xvals.length - 1];
+		var t = $("#x-val input").each(function() {
+			if(+($(this).prop("value")) < max_x){
+				$(this).prop("checked", checkQ);
+			}
+		});
+	}
+	$("#b-all").click( function() {
+		reset_settings( true );
+	});
+	$("#b-clear").click( function() {
+		reset_settings( false );
+	});
+});
